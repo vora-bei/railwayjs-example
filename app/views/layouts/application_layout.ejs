@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title><%= title %></title>
+        <%- stylesheet_link_tag('bootstrap', 'style', 'bootstrap-responsive', 'bootstrap-wysihtml5') %>
+        <%- javascript_include_tag('http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', 'bootstrap', 'rails', 'application', 'wysihtml5-0.3.0.min', 'bootstrap-wysihtml5') %>
+        <%- csrf_meta_tag() %>
+		</head>
+    <body>
+        
+			<div class="navbar navbar-fixed-top">
+     		<div class="navbar-inner">
+        	<div class="container">
+						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          		<span class="icon-bar"></span>
+					    <span class="icon-bar"></span>
+            	<span class="icon-bar"></span>
+          	</a>
+            <a class="brand" href="/">edbaps testing-pages</a>
+						<div class="nav-collapse collapse">
+							<ul class="nav">
+								<li>
+									<a href="/juice">Juice Test Pages</a>
+								</li>
+								<li>
+									<a href="/edb">EDB Test Pages</a>
+								</li>
+								<li>
+									<a href="/fun">Just For Fun</a>
+								</li>
+								<li>
+									<a href="http://130.80.9.153/phpmyadmin/index.php">Wanna See My SQL? ( u:guest | p:guest )</a>
+								</li>
+								<li>
+									<%- link_to("Login via the Twitter", "/auth/google") %>
+								</li>
+							</ul>
+            </div>
+          </div>
+        </div>
+			</div>
+
+			<div class="content-main">
+        <div class="container">
+            <% var flash = request.flash('info').pop(); if (flash) { %>
+            <div class="row">
+						    <div class="alert alert-info">
+                    <a class="close" data-dismiss="alert">×</a>
+                    <%- flash %>
+                </div>
+						</div>
+            <% } %>
+            
+            <% flash = request.flash('error').pop(); if (flash) { %>
+						<div class="row">
+                <div class="alert alert-error">
+                    <a class="close" data-dismiss="alert">×</a>
+                    <%- flash %>
+                </div>
+						</div>
+            <% }; %>
+            
+            <%- body %>
+            
+            <hr />
+            <footer>
+                <p>&copy; hearst 2012</p>
+            </footer>
+        </div>
+			</div>
+
+			<!--I HATE MICROSOFT-->
+			<!--I HATE WINDOWS-->
+			<!--I HATE INTERNET EXPLORER-->
+			<!--I HATE VISUAL STUDIO-->
+			<!--I HATE SQL SERVER-->
+			<!--I HATE AZURE-->
+
+    </body>
+</html>

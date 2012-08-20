@@ -1,0 +1,26 @@
+{ 
+	"author": "Daniel Lochrie"
+,	"name": "testing-site"
+, "version": "0.0.1"
+, "engines": ["node >= 0.4.0"]
+, "main": "server.js"
+, "dependencies":
+  { "ejs":              "*"
+  , "ejs-ext":          "*"
+  , "express":          "~2.x"
+  , "railway":          ">= 0.2.6"
+  , "jugglingdb":       ">= 0.1.0"
+  , "coffee-script":    ">= 1.1.1"
+	, "mysql":						">= 0.9.6"  
+	, "passport":         "*"
+  , "passport-google":  "*"
+},
+  "devDependencies":
+  { "nodeunit":         "*"
+  , "sinon":            "*"
+  , "semicov":          "*"
+  }
+, "scripts":
+  { "test": "nodeunit test/*/*"
+  }
+}

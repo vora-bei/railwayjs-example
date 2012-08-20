@@ -1,0 +1,15 @@
+/* For color-pallete, see: http://colorschemedesigner.com/#0u11Tw0w0w0w0 */
+div.navbar div.navbar-inner {
+	background: #FF7400;
+	background-image: none;
+	border-radius: 0px;
+	color: #FFB273;
+	margin-bottom:40px;
+}
+.navbar .nav > li > a, 
+.navbar .dropdown-menu a{ 
+	color: #FFD073 !important; 
+}
+.content-main {
+	margin-top:60px;
+}

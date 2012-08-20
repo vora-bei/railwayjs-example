@@ -1,0 +1,11 @@
+{ "development":
+  { "driver":   "mysql"
+	, "host": 		"localhost"
+	, "database":	"testingsite"
+	,	"username": "testing-site"
+	, "password": "th1s1sMYt3st1ngs1t3"
+  }
+, "test":
+  { "driver":   "memory"
+  }
+}
