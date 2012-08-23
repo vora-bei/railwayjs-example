@@ -29,10 +29,11 @@ var Post = define('Post', function() {
     property('updated_at', Date);
 });
 
-var User = define('User', function() {
+var User = define('User', function () {
+	property('displayName', String);
+	property('email', String, { index: true });
+	property('googleId', String, { index: true });
+	property('githubId', String, { index: true });
+	property('linkedinId', String, { index: true });
+});
 
-});
-var User = describe('User', function () {
-    property('name', String);
-    property('createdAt', Date);
-});

@@ -1,4 +1,5 @@
 var express = require('express');
+var rwps = require('railway-passport');
 
 app.configure(function(){
     var cwd = process.cwd();    
@@ -11,5 +12,13 @@ app.configure(function(){
     app.use(express.cookieParser('secret'));
     app.use(express.session({secret: 'secret'}));
     app.use(express.methodOverride());
+
+		// init passport
+    rwps.init();
+    // hook up user model
+    process.nextTick(function () {
+        rwps.loadUser(User);
+    });
+
     app.use(app.router);
 });

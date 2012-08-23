@@ -7,3 +7,4 @@ if (!module.parent) {
     app.listen(port);
     console.log("Railway server listening on port %d within %s environment", port, app.settings.env);
 }
+

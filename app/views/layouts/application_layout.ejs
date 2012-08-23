@@ -20,19 +20,16 @@
 						<div class="nav-collapse collapse">
 							<ul class="nav">
 								<li>
-									<a href="/juice">Juice Test Pages</a>
+									<%- link_to("posts", "/posts") %>
 								</li>
 								<li>
-									<a href="/edb">EDB Test Pages</a>
+									<%- link_to("contact", "/contact") %>
 								</li>
 								<li>
-									<a href="/fun">Just For Fun</a>
+									<%- link_to("about", "/about") %>
 								</li>
 								<li>
-									<a href="http://130.80.9.153/phpmyadmin/index.php">Wanna See My SQL? ( u:guest | p:guest )</a>
-								</li>
-								<li>
-									<%- link_to("Login via the Twitter", "/auth/google") %>
+									<%- link_to("Login via the Google", "/auth/google") %>
 								</li>
 							</ul>
             </div>
