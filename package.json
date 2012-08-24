@@ -14,6 +14,7 @@
 	, "mysql":						">= 0.9.6"  
 	, "passport":         "*"
   , "passport-google":  "*"
+  , "railway-passport": "*"
 },
   "devDependencies":
   { "nodeunit":         "*"

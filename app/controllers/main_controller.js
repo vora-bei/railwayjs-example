@@ -1,14 +1,19 @@
 load('application');
 
-
 action('index', function () {
     this.title = 'Testing Site Home Page';
-		var user = '*not logged in*';
+		var userName = '*not logged in*';
 		if (session.passport.user) {
-			user = session.passport.user.displayName
+			User.find(session.passport.user, function(err, user) { 
+				console.log(user);
+				userName = user.displayName; 
+			});
 		}
 		Post.all(function (err, posts) {
-			render({ posts: posts, user: user });
+			render({ 
+				posts: posts, 
+				user: userName 
+			});
 		});
 		// Do not attempt to render more?
 		console.log(this);
@@ -23,3 +28,4 @@ action('contact', function() {
 	this.title = 'contact us';
 	render();
 });
+
