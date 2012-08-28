@@ -4,7 +4,13 @@
  * 
  * debug.common.js
  * This file contains the common library for the
- * Juice Bookmarklets
+ * DFP Bookmarklets
+ *
+ * USAGE
+ * Add a bookmark to your browser and enter the 
+ * following code for the URL/LINK:
+ * javascript:void(debug_element=document.createElement('script'));%20void(debug_element.src='http://localhost:3000/javascripts/bookmarklets/common.js');%20void(document.body.appendChild(debug_element));
+ * -- MAKE SURE TO UPDATE THE URL FOR THE common.js
  */
 
 var aps = aps || {}; // Juice Global Object
