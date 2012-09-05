@@ -1,10 +1,14 @@
 <div class="hero-unit">
-	<h1>testing is fun :-) <small>but i still hate to test</small></h1>
+	<h1>welcome to my new site
+		<br /><small>there's a lot of construction going on!</small>
+	</h1>
 	<p>this site has potential, so be patient. don't be so demanding; good things come to those with machine guns and ammo.</p>
 </div>
 
 <div class="row">
-	<p>Welcome back, <%- user %>!</p>
+	<% if (user) { %>
+		<p>Welcome back, <%- user %>!</p>
+	<% } %>
 </div>
 
 <div class="row">

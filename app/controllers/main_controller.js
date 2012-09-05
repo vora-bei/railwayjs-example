@@ -2,10 +2,9 @@ load('application');
 
 action('index', function () {
     this.title = 'Testing Site Home Page';
-		var userName = '*not logged in*';
+		var userName = null;
 		if (session.passport.user) {
-			User.find(session.passport.user, function(err, user) { 
-				console.log(user);
+			User.find(session.passport.user, function(err, user) {
 				userName = user.displayName; 
 			});
 		}
@@ -15,8 +14,6 @@ action('index', function () {
 				user: userName 
 			});
 		});
-		// Do not attempt to render more?
-		console.log(this);
 });
 
 action('about', function() {

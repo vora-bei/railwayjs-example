@@ -16,7 +16,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="/">edbaps testing-pages</a>
+        <a class="brand" href="/">my cool new railway site</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
             <li>
@@ -28,9 +28,13 @@
             <li>
               <%- link_to("about", "/about") %>
             </li>
+          </ul>
+          <ul class="nav pull-right">
             <li>
-              <% if (!userLoggedIn()) { %>
-                <%- link_to("Login via the Google", "/auth/google") %>
+              <% if (!user) { %>
+                <%- link_to("login", "/login") %>
+              <% } else { %>
+                <%- link_to("logout", "/logout") %>
               <% } %>
             </li>
           </ul>
@@ -63,17 +67,10 @@
       
       <hr />
       <footer>
-        <p>&copy; hearst 2012</p>
+        <p>&copy; mycompany 2012</p>
       </footer>
     </div>
   </div>
-  
-  <!--I HATE MICROSOFT-->
-  <!--I HATE WINDOWS-->
-  <!--I HATE INTERNET EXPLORER-->
-  <!--I HATE VISUAL STUDIO-->
-  <!--I HATE SQL SERVER-->
-  <!--I HATE AZURE-->
   
   </body>
 </html>
