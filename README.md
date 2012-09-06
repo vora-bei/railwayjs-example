@@ -3,6 +3,8 @@ railwayjs-example
 
 Example RailwayJS Example, no real use-case yet.
 
+This app also uses [Railway-Passport](https://github.com/1602/Railway-passport), and offers (currently) authentication through Google.
+
 DB Setup (mysql)
 ----------------
 
