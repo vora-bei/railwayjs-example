@@ -1,0 +1,1 @@
+Post.belongsTo(User, {as: 'author', foreignKey: 'userId'});

@@ -1,6 +1,7 @@
 load('application');
 
 before(loadPost, {only: ['show', 'edit', 'update', 'destroy']});
+before(checkRole, { only: ['edit', 'update', 'destroy']});
 
 action('new', function () {
     this.title = 'New post';
@@ -39,8 +40,8 @@ action(function show() {
 });
 
 action(function edit() {
-    this.title = 'Post edit';
-    render();
+  this.title = 'Post edit';
+  render();
 });
 
 action(function update() {
@@ -77,4 +78,23 @@ function loadPost() {
             next();
         }
     }.bind(this));
+}
+
+function checkRole() {
+  // Should check if the role is sufficient to Create/Update/Delete
+  // Allowed Roles should be set in an array somewhere
+  // TODO: THIS SHOULD CHECK FOR ROLE OF ADMIN!!!!
+  if (session.passport.user) {
+    User.find(session.passport.user, function(err, user) {
+      if (!err) {
+        next();
+      } else {
+        flash('error', 'You are not authorized for this action.');
+        redirect('/');
+      }
+    });
+  } else {
+    flash('error', 'You are not authorized for this action.');
+    redirect('/');
+  }
 }
