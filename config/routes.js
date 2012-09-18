@@ -1,6 +1,13 @@
 exports.routes = function (map) {
-    map.resources('users');
-    map.resources('posts');
+		
+		map.namespace('admin', function (admin) {
+    	admin.resources('posts');
+		});
+
+		map.resources('posts', {only: ['index', 'show']});
+	    	
+		map.resources('users');
+
 		map.get('/about', 'main#about');
 		map.get('/contact', 'main#contact');
 		map.get('/login', 'account#login');
