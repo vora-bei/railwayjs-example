@@ -1,0 +1,12 @@
+<!--comments/_form.ejs-->
+<%- errorMessagesFor(comment) %>
+<div class="control-group">
+   <%- form.label("content", false, {class: "control-label"}) %>
+   <div class="controls">
+       <%- form.textarea("content", {class: "input-xxlarge", rows: 2}) %>
+   </div>
+</div>
+<script>
+	$('textarea').wysihtml5();
+</script>
+<!--/comments/_form.ejs-->

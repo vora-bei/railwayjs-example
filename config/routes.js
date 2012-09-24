@@ -7,7 +7,12 @@ exports.routes = function (map) {
     	admin.resources('users');
 		});
 
-		map.resources('posts', {only: ['index', 'show']});	    	
+		map.resources('posts', {only: ['index', 'show']});
+    
+    map.resources('posts', function (post) {
+      post.resources('comments');
+    });
+    
 		map.resources('users', {only: ['index', 'show']});
 
 		map.get('/about', 'main#about');

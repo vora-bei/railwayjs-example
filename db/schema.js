@@ -46,5 +46,12 @@ var Role = define('Role', function() {
   property('updated_at', Date);
 });
 
-
-
+var Comment = define('Comment', function () {
+	property('content', Text);
+  property('postId', String);
+  property('userId', String);
+  property('flagged', Boolean);
+  property('active', Boolean);
+  property('created_at', Date);
+  property('updated_at', Date);
+});

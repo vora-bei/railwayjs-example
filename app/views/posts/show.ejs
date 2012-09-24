@@ -2,10 +2,28 @@
     <h1><%= post.title %></h1>
 </div>
 
-
-<div class="span12">
-	<%- post.content %>
+<div class="row">
+	<div class="span12">
+		<%- post.content %>
+	</div>
 </div>
 
-Um, comments???
+<hr />
+
+<div class="row">
+	<div class="span12">
+		<h4>Comments</h4>
+		<%- comments %>
+		
+		NEED COMMENTS CONTROLLER WITH NEW ACTION???
+		
+		<h4>Leave a Comment? <small>Check to see if they are LOGGED IN!!!</small></h4>
+		<% form_for(comment, {action: path_to.new_post_comment(), method: 'POST', id: "comment_form", class: 'form-horizontal'}, function (form) { %>
+			<%- partial('comments/form.ejs', {locals: {form: form, comment: comment}}) %>
+			<div class="form-actions">
+					<%- form.submit('<i class="icon-ok icon-white"></i> Post Comment', {class: 'btn btn-primary'}) %>
+			</div>
+		<% });%>
+	</div>
+</div>
 

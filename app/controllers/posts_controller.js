@@ -36,6 +36,8 @@ action(function index() {
 
 action(function show() {
     this.title = 'Post show';
+    this.comment = new Comment;
+    this.comments = ['shit', 'more shit', 'even more shit'];
     render();
 });
 

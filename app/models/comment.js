@@ -1,0 +1,1 @@
+Comment.belongsTo(Post, {as: 'comment', foreignKey: 'postId'});
