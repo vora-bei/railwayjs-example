@@ -1,11 +1,16 @@
 <!--comments/_form.ejs-->
 <%- errorMessagesFor(comment) %>
 <div class="control-group">
-   <%- form.label("content", false, {class: "control-label"}) %>
    <div class="controls">
-       <%- form.textarea("content", {class: "input-xxlarge", rows: 2}) %>
+      <%- form.textarea("content", {class: "input-xxlarge", rows: 2}) %>
    </div>
+	 <%- form.label("Your Name", false, {class: "control-label"}) %>
+   <div class="controls">
+			<%- form.input("userName", {value: user.displayName}) %>
+	 </div>
 </div>
+<%- form.input("postId", {type: "hidden", value: post.id}) %>
+
 <script>
 	$('textarea').wysihtml5();
 </script>

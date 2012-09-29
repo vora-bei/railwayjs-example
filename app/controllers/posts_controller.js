@@ -12,16 +12,16 @@ action('new', function () {
 action(function create() {
     req.body.Post.created_at = new Date;
 		Post.create(req.body.Post, function (err, post) {
-        if (err) {
-            flash('error', 'Post can not be created');
-            render('new', {
-                post: post,
-                title: 'New post'
-            });
-        } else {
-            flash('info', 'Post created');
-            redirect(path_to.posts());
-        }
+      if (err) {
+          flash('error', 'Post can not be created');
+          render('new', {
+              post: post,
+              title: 'New post'
+          });
+      } else {
+          flash('info', 'Post created');
+          redirect(path_to.posts());
+      }
     });
 });
 
@@ -35,10 +35,20 @@ action(function index() {
 });
 
 action(function show() {
-    this.title = 'Post show';
+    this.title = this.post.title;
     this.comment = new Comment;
-    this.comments = ['shit', 'more shit', 'even more shit'];
-    render();
+    
+    var user = session.passport.user;
+    User.find(params.id, function (err, user) {
+      if (!err || user) {
+       this.user = user;
+       next();
+     }
+    }.bind(this));
+    
+    Comment.all({where: {postId: params.id}, order: 'created_at'}, function(err, comments) {
+      render({ comments: comments });
+    });  
 });
 
 action(function edit() {
@@ -72,14 +82,14 @@ action(function destroy() {
 });
 
 function loadPost() {
-    Post.find(params.id, function (err, post) {
-        if (err || !post) {
-            redirect(path_to.posts());
-        } else {
-            this.post = post;
-            next();
-        }
-    }.bind(this));
+  Post.find(params.id, function (err, post) {
+    if (err || !post) {
+      redirect(path_to.posts());
+    } else {
+      this.post = post;
+      next();
+    }
+  }.bind(this));
 }
 
 function checkRole() {

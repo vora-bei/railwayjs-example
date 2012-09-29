@@ -12,18 +12,26 @@
 
 <div class="row">
 	<div class="span12">
-		<h4>Comments</h4>
-		<%- comments %>
-		
-		NEED COMMENTS CONTROLLER WITH NEW ACTION???
-		
-		<h4>Leave a Comment? <small>Check to see if they are LOGGED IN!!!</small></h4>
-		<% form_for(comment, {action: path_to.new_post_comment(), method: 'POST', id: "comment_form", class: 'form-horizontal'}, function (form) { %>
-			<%- partial('comments/form.ejs', {locals: {form: form, comment: comment}}) %>
-			<div class="form-actions">
-					<%- form.submit('<i class="icon-ok icon-white"></i> Post Comment', {class: 'btn btn-primary'}) %>
-			</div>
-		<% });%>
+		<h3>Comments</h3>
+		<% if (comments.length > 0) { %>
+			<% comments.forEach(function (comment) { %>
+				<p><%- comment.userName %> said on <span class="pull-right"><%- comment.created_at %></span></p>
+				<blockquote>
+					<%- comment.content %>
+				</blockquote>
+			<% }); %>
+		<% } else { %>
+			<p class="alert alert-block alert-info">
+				<strong>Be the first to leave a comment!</strong> 
+			</p>
+		<% } %>
+		<% if (user && typeof(user.id ) !== null) { %>
+			<h5>Fill out the form below to leave a comment.</h5>
+			<% form_for(comment, {action: path_to.post_comments(post), method: 'POST', id: "comment_form"}, function (form) { %>
+				<%- partial('comments/form.ejs', {locals: {form: form, comment: comment, post: post, user: user }}) %>
+				<%- form.submit('Create comment') %> 
+			<% }); %>
+		<% } %>
 	</div>
 </div>
 
