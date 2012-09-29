@@ -1,85 +1,46 @@
 load('application');
 
-before(loadPost, {only: ['show', 'edit', 'update', 'destroy']});
-before(checkRole, { only: ['edit', 'update', 'destroy']});
-
-action('new', function () {
-    this.title = 'New post';
-    this.post = new Post;
-    render();
-});
-
-action(function create() {
-    req.body.Post.created_at = new Date;
-		Post.create(req.body.Post, function (err, post) {
-      if (err) {
-          flash('error', 'Post can not be created');
-          render('new', {
-              post: post,
-              title: 'New post'
-          });
-      } else {
-          flash('info', 'Post created');
-          redirect(path_to.posts());
-      }
-    });
-});
+before(loadPost, {only: ['show']});
+before(loadCommentor, {only: ['show']});
 
 action(function index() {
     this.title = 'Posts index';
     Post.all(function (err, posts) {
         render({
-            posts: posts
+          posts: posts
         });
     });
 });
 
 action(function show() {
-    this.title = this.post.title;
-    this.comment = new Comment;
-    
-    var user = session.passport.user;
-    User.find(params.id, function (err, user) {
+  this.title = this.post.title;
+  this.comment = new Comment;
+  
+  // Get the Author of this Post
+  User.find(this.post.userId, function (err, user) {
+    if (!err || user) {
+     this.author = user;
+     next();
+   }
+  }.bind(this));
+  
+  Comment.all({where: {postId: params.id}, order: 'created_at'}, function(err, comments) {
+    render({ comments: comments });
+  });  
+});
+
+function loadCommentor() {
+  this.commentor = null;
+  if (session.passport.user) {
+    User.find(session.passport.user, function (err, user) {
       if (!err || user) {
-       this.user = user;
-       next();
-     }
+        this.commentor = user;
+        next();
+      } 
     }.bind(this));
-    
-    Comment.all({where: {postId: params.id}, order: 'created_at'}, function(err, comments) {
-      render({ comments: comments });
-    });  
-});
-
-action(function edit() {
-  this.title = 'Post edit';
-  render();
-});
-
-action(function update() {
-		body.Post.updated_at = new Date;
-    this.post.updateAttributes(body.Post, function (err) {
-        if (!err) {
-            flash('info', 'Post updated');
-            redirect(path_to.post(this.post));
-        } else {
-            flash('error', 'Post can not be updated');
-            this.title = 'Edit post details';
-            render('edit');
-        }
-    }.bind(this));
-});
-
-action(function destroy() {
-    this.post.destroy(function (error) {
-        if (error) {
-            flash('error', 'Can not destroy post');
-        } else {
-            flash('info', 'Post successfully removed');
-        }
-        send("'" + path_to.posts() + "'");
-    });
-});
+  }
+  next();
+}
 
 function loadPost() {
   Post.find(params.id, function (err, post) {
@@ -90,23 +51,4 @@ function loadPost() {
       next();
     }
   }.bind(this));
-}
-
-function checkRole() {
-  // Should check if the role is sufficient to Create/Update/Delete
-  // Allowed Roles should be set in an array somewhere
-  // TODO: THIS SHOULD CHECK FOR ROLE OF ADMIN!!!!
-  if (session.passport.user) {
-    User.find(session.passport.user, function(err, user) {
-      if (!err) {
-        next();
-      } else {
-        flash('error', 'You are not authorized for this action.');
-        redirect('/');
-      }
-    });
-  } else {
-    flash('error', 'You are not authorized for this action.');
-    redirect('/');
-  }
 }

@@ -11,6 +11,7 @@ action('new', function () {
 
 action(function create() {
     req.body.Post.created_at = new Date;
+    req.body.Post.userId = session.passport.user;
 		Post.create(req.body.Post, function (err, post) {
         if (err) {
             flash('error', 'Post can not be created');
@@ -46,6 +47,7 @@ action(function edit() {
 
 action(function update() {
 		body.Post.updated_at = new Date;
+    body.Post.userId = session.passport.user;
     this.post.updateAttributes(body.Post, function (err) {
         if (!err) {
             flash('info', 'Post updated');

@@ -29,7 +29,7 @@
 </div>
 
 <div class="control-group">
-	<%- form.label("Comment Body", false, { class: "control-label" }) %>
+	<%- form.label("Body", false, { class: "control-label" }) %>
 	<div class="controls">
 		<%- form.textarea("content", { class: "span8", rows: 2 }) %>
 	</div>
@@ -37,7 +37,7 @@
 <div class="control-group">
 	<%- form.label("Your Name", false, { class: "control-label" }) %>
 	<div class="controls">
-		<%- form.input("userName", { value: user.displayName }) %>
+		<%- form.input("userName", { value: commentor.displayName }) %>
 	</div>
 </div>
 <%- form.input("postId", {type: "hidden", value: post.id}) %>

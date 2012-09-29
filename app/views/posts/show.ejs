@@ -1,5 +1,6 @@
 <div class="page-header">
     <h1><%= post.title %></h1>
+		<p>Posted by <span class="text-info"><%- author.displayName %></span> on <%- post.created_at %></p>
 </div>
 
 <div class="row">
@@ -15,21 +16,24 @@
 		<h2>Comments</h2>
 		<% if (comments.length > 0) { %>
 			<% comments.forEach(function (comment) { %>
-				<p><%- comment.userName %> said on <span class="pull-right"><%- comment.created_at %></span></p>
+				<p><span class="text-info"><%- comment.userName %></span> said on <span class="pull-right"><%- comment.created_at %></span></p>
 				<blockquote>
 					<%- comment.content %>
 				</blockquote>
 			<% }); %>
 		<% } else { %>
 			<p class="alert alert-block alert-info">
-				<strong>Be the first to leave a comment!</strong> 
+				<button type="button" class="close" data-dismiss="alert">x</button>
+				<strong>Be the first to leave a comment!</strong>
 			</p>
 		<% } %>
-		<% if (user && typeof(user.id ) !== null) { %>
+		<% if (commentor && typeof(commentor.id ) !== null) { %>
 			<% form_for(comment, {action: path_to.post_comments(post), method: 'POST', id: "comment_form", class: "form-horizontal"}, function (form) { %>
-				<%- partial('comments/form.ejs', {locals: {form: form, comment: comment, post: post, user: user }}) %>
+				<%- partial('comments/form.ejs', {locals: {form: form, comment: comment, post: post, user: commentor }}) %>
 				<%- form.submit('Post Comment', {class: 'btn'}) %> 
 			<% }); %>
+		<% } else { %>
+			<p>You must be logged in to leave a comment. Click <%- link_to("here", "/login") %> to login.</p>
 		<% } %>
 	</div>
 </div>
