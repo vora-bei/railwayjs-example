@@ -10,16 +10,6 @@
 		<p>Welcome back, <%- user %>!</p>
 	<% } %>
 </div>
-
-<% if (allUsers.length > 0) { %>
-	<h3>Here are all the Users</em></h3>
-	<hr />
-	<ul>
-		<% allUsers.forEach(function (user) { %>
-			<li><%- user.displayName %></li>
-		<% }); %>
-	</ul>
-<% } %>
 		
 <div class="row">
     <div class="span8">

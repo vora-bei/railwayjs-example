@@ -15,10 +15,9 @@ app.configure(function(){
 
 		// init passport
     rwps.init();
-    // hook up user model
     process.nextTick(function () {
         rwps.loadUser(User);
     });
-
+    
     app.use(app.router);
 });

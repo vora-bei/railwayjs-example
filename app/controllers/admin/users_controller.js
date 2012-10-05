@@ -1,10 +1,10 @@
 load('application');
 
 action(function index() {
-    this.title = 'Posts index';
-    Post.all(function (err, posts) {
-      render({
-        posts: posts
-      });
+  this.title = 'Users index';
+  User.all(function (err, users) {
+    render({
+      usersList: users // Do not set variable to 'users', this is reserved to Passport
     });
+  });
 });
