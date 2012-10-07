@@ -3,7 +3,11 @@ railwayjs-example
 
 Example RailwayJS Example, no real use-case yet.
 
-This app also uses [Railway-Passport](https://github.com/1602/Railway-passport), and offers (currently) authentication through Google.
+* Railway is built on the [ExpressJS]() framework.
+* Templates are using [ejs](https://github.com/visionmedia/ejs).
+* ORM is [Juggling DB](https://github.com/1602/jugglingdb).
+* This example is using Twitter Bootstrap throughout, but not through a plugin.
+* This app also uses [Railway-Passport](https://github.com/1602/Railway-passport), and offers (currently) authentication through Google.
 
 DB Setup (mysql)
 ----------------
