@@ -2,8 +2,8 @@ exports.routes = function (map) {
 
     // Generic routes. Add all your routes below this line
     // feel free to remove generic routes
-    map.all(':controller/:action');
-    map.all(':controller/:action/:id');
+    //map.all(':controller/:action');
+    //map.all(':controller/:action/:id');
 
     map.get('/admin', 'admin#index');
     		
@@ -12,13 +12,11 @@ exports.routes = function (map) {
     	admin.resources('users');
 		});
     
-    /*
+    map.resources('posts', {only: ['index', 'show']});
+    
     map.resources('posts', function (post) {
       post.resources('comments');
     });
-    */
-    
-    map.resources('posts', {only: ['index', 'show']});
     
 		map.resources('users', {only: ['index', 'show']});
     

@@ -1,5 +1,6 @@
 load('application');
 
+/*
 before(loadPost);
 
 function loadPost() {
@@ -12,6 +13,7 @@ function loadPost() {
     }
   }.bind(this));
 }
+*/
 
 function loadUser() {
   Post.find(req.params.post_id, function (err, post) {
@@ -47,7 +49,7 @@ action(function create() {
       });
     } else {
       flash('info', 'comment created');
-      redirect(path_to.posts(req.params.id));
+      redirect(path_to.post(req.body.Comment.postId));
     }
   });
   
