@@ -33,9 +33,11 @@
 				<hr />
 					<% comments.forEach(function(comment) { %>
 						<blockquote>
-							<%-: comment.content | truncate_words: 20 %>
+							<a href="<%- path_to.post(comment.postId) %>#comment-<%- comment.id %>">
+								<%-: comment.content | truncate_words: 20 %>
+							</a>
 							<small>
-								<%- link_to(comment.userName, path_to.post(comment.postId)) %>,
+								<span class="text-warning"><%- comment.userName %></span>,
 								<%= (new Date(comment.created_at)).toLocaleString() %>
 							</small>
 						</blockquote>

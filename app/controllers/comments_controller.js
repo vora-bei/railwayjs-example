@@ -1,37 +1,5 @@
 load('application');
 
-/*
-before(loadPost);
-
-function loadPost() {
-  Post.find(req.params.post_id, function (err, post) {
-    if (err || !post) {
-      redirect(path_to.posts);
-    } else {
-      this.post = post;
-      next();
-    }
-  }.bind(this));
-}
-*/
-
-function loadUser() {
-  Post.find(req.params.post_id, function (err, post) {
-    if (err || !post) {
-      redirect(path_to.posts);
-    } else {
-      this.post = post;
-      next();
-    }
-  }.bind(this));
-}
-
-action('new', function () {
-    this.title = 'New comment';
-    this.comment = new comment;
-    render();
-});
-
 action(function create() {
   if (!session.passport.user)
     next();
@@ -51,8 +19,7 @@ action(function create() {
       flash('info', 'comment created');
       redirect(path_to.post(req.body.Comment.postId));
     }
-  });
-  
+  });  
 });
 
 /**

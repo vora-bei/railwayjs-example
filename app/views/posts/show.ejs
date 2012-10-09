@@ -16,7 +16,7 @@
 		<h2>Comments</h2>
 		<% if (comments.length > 0) { %>
 			<% comments.forEach(function (comment) { %>
-				<p><span class="text-info"><%- comment.userName %></span> said on <span class="pull-right"><%- comment.created_at %></span></p>
+				<p id="comment-<%- comment.id %>"><span class="text-info"><%- comment.userName %></span> said on <span class="pull-right"><%- comment.created_at %></span></p>
 				<blockquote>
 					<%- comment.content %>
 				</blockquote>

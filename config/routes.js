@@ -8,6 +8,7 @@ exports.routes = function (map) {
     map.get('/admin', 'admin#index');
     		
 		map.namespace('admin', function (admin) {
+      admin.resources('comments');
       admin.resources('posts');
     	admin.resources('users');
 		});
