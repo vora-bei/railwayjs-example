@@ -36,8 +36,19 @@ action(function index() {
 });
 
 action(function show() {
-    this.title = 'Post show';
-    render();
+  this.title = 'Post Management';
+  
+  // Get the Author of this Post
+  User.find(this.post.userId, function (err, user) {
+    if (!err || user) {
+     this.author = user;
+     next();
+   }
+  }.bind(this));
+  
+  Comment.all({where: {postId: params.id}, order: 'created_at'}, function(err, comments) {
+    render({ comments: comments });
+  });  
 });
 
 action(function edit() {
