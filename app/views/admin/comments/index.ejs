@@ -16,10 +16,9 @@
         <tbody>
           <% comments.forEach(function (comment) { %>
             <tr>
-              <td><strong><a href="<% path_to.edit_admin_comment(comment) %>"><%-: comment.content | truncate_words: 20, path_to.admin_comment(comment) %>...</strong></a></td>
-              <td>N/A</td>
+              <td><strong><a href="<%= path_to.admin_comment(comment.id) %>"><%-: comment.content | truncate_words: 20, path_to.admin_comment(comment) %>...</strong></a></td>
+              <td><a><i class="icon-flag"></i></a></td>
               <td>
-                <%- link_to('<i class="icon-edit"></i> Edit', path_to.edit_admin_comment(comment), {class: 'btn btn-mini'}) %>
                 <%- link_to('<i class="icon-remove icon-white"></i> Delete', path_to.admin_comment(comment), {class: 'btn btn-mini btn-danger', method: 'delete', remote: true, jsonp: '(function (u) {location.href = u;})'}) %>        
               </td>
             </tr>

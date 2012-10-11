@@ -72,14 +72,14 @@ action(function destroy() {
 });
 
 function loadPost() {
-Post.find(params.id, function (err, post) {
-    if (err || !post) {
-        redirect(path_to.posts());
-    } else {
-        this.post = post;
-        next();
-    }
-}.bind(this));
+    Post.find(params.id, function (err, post) {
+        if (err || !post) {
+            redirect(path_to.posts());
+        } else {
+            this.post = post;
+            next();
+        }
+    }.bind(this));
 }
 
 function checkRole() {
