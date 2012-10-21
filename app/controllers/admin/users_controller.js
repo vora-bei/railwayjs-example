@@ -1,6 +1,6 @@
 load('application');
 
-before(checkRole);
+before(use('checkRole'));
 
 action(function index() {
   this.title = 'Users index';

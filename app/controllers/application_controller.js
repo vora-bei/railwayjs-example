@@ -4,6 +4,8 @@ before('protect from forgery', function () {
 
 before(loadUser);
 
+publish('checkRole', checkRole);
+
 function loadUser() {
 	this.userName = null;
 	if (session.passport.user) {
@@ -16,4 +18,23 @@ function loadUser() {
 	} else {
 		next();
 	}
+}
+
+function checkRole() {
+  // Should check if the role is sufficient to Create/Update/Delete
+  // Allowed Roles should be set in an array somewhere
+  // TODO: THIS SHOULD CHECK FOR ROLE OF ADMIN!!!!
+  if (session.passport.user) {
+    User.find(session.passport.user, function(err, user) {
+      if (!err) {
+        next();
+      } else {
+        flash('error', 'You are not authorized for this action.');
+        redirect('/');
+      }
+    });
+  } else {
+    flash('error', 'You are not authorized for this action.');
+    redirect('/');
+  }
 }

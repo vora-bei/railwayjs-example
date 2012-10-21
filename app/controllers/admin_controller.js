@@ -1,13 +1,9 @@
 load('application');
 
-action('index', function () {
-    render({
-        title: "Dashboard"
-    });
-});
+before(use('checkRole'));
 
-action('logout', function() {
-    req.logOut();
-    flash('error', 'You are now logged out.');
-    redirect('/'); 
+action('index', function () {
+  render({
+    title: "Dashboard"
+  });
 });

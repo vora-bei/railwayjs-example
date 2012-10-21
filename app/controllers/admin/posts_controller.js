@@ -1,7 +1,7 @@
 load('application');
 
 before(loadPost, {only: ['show', 'edit', 'update', 'destroy']});
-before(checkRole);
+before(use('checkRole'));
 
 action('new', function () {
     this.title = 'New post';
@@ -10,29 +10,29 @@ action('new', function () {
 });
 
 action(function create() {
-    req.body.Post.created_at = new Date;
-    req.body.Post.userId = session.passport.user;
-		Post.create(req.body.Post, function (err, post) {
-        if (err) {
-            flash('error', 'Post can not be created');
-            render('new', {
-                post: post,
-                title: 'New post'
-            });
-        } else {
-            flash('info', 'Post created');
-            redirect(path_to.posts());
-        }
-    });
+  req.body.Post.created_at = new Date;
+  req.body.Post.userId = session.passport.user;
+  Post.create(req.body.Post, function (err, post) {
+    if (err) {
+      flash('error', 'Post can not be created');
+      render('new', {
+        post: post,
+        title: 'New post'
+      });
+    } else {
+      flash('info', 'Post created');
+      redirect(path_to.posts());
+    }
+  });
 });
 
 action(function index() {
-    this.title = 'Posts index';
-    Post.all(function (err, posts) {
-        render({
-            posts: posts
-        });
+  this.title = 'Posts index';
+  Post.all(function (err, posts) {
+    render({
+      posts: posts
     });
+  });
 });
 
 action(function show() {
@@ -57,57 +57,38 @@ action(function edit() {
 });
 
 action(function update() {
-		body.Post.updated_at = new Date;
-    body.Post.userId = session.passport.user;
-    this.post.updateAttributes(body.Post, function (err) {
-        if (!err) {
-            flash('info', 'Post updated');
-            redirect(path_to.post(this.post));
-        } else {
-            flash('error', 'Post can not be updated');
-            this.title = 'Edit post details';
-            render('edit');
-        }
-    }.bind(this));
+  body.Post.updated_at = new Date;
+  body.Post.userId = session.passport.user;
+  this.post.updateAttributes(body.Post, function (err) {
+    if (!err) {
+      flash('info', 'Post updated');
+      redirect(path_to.post(this.post));
+    } else {
+      flash('error', 'Post can not be updated');
+      this.title = 'Edit post details';
+      render('edit');
+    }
+  }.bind(this));
 });
 
 action(function destroy() {
-    this.post.destroy(function (error) {
-        if (error) {
-            flash('error', 'Can not destroy post');
-        } else {
-            flash('info', 'Post successfully removed');
-        }
-        send("'" + path_to.posts() + "'");
-    });
+  this.post.destroy(function (error) {
+    if (error) {
+      flash('error', 'Can not destroy post');
+    } else {
+      flash('info', 'Post successfully removed');
+    }
+    send("'" + path_to.posts() + "'");
+  });
 });
 
 function loadPost() {
-    Post.find(params.id, function (err, post) {
-        if (err || !post) {
-            redirect(path_to.posts());
-        } else {
-            this.post = post;
-            next();
-        }
-    }.bind(this));
-}
-
-function checkRole() {
-  // Should check if the role is sufficient to Create/Update/Delete
-  // Allowed Roles should be set in an array somewhere
-  // TODO: THIS SHOULD CHECK FOR ROLE OF ADMIN!!!!
-  if (session.passport.user) {
-    User.find(session.passport.user, function(err, user) {
-      if (!err) {
-        next();
-      } else {
-        flash('error', 'You are not authorized for this action.');
-        redirect('/');
-      }
-    });
-  } else {
-    flash('error', 'You are not authorized for this action.');
-    redirect('/');
-  }
+  Post.find(params.id, function (err, post) {
+    if (err || !post) {
+      redirect(path_to.posts());
+    } else {
+      this.post = post;
+      next();
+    }
+  }.bind(this));
 }

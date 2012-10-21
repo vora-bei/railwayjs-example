@@ -1,13 +1,13 @@
 load('application');
 
 action('login', function () {
-    render({
-        title: "Login"
-    });
+  render({
+    title: "Login"
+  });
 });
 
 action('logout', function() {
-    req.logOut();
-    flash('error', 'You are now logged out.');
-    redirect('/'); 
+  req.logOut();
+  flash('info', 'You are now logged out.');
+  redirect('/'); 
 });
