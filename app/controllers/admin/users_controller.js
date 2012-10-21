@@ -1,5 +1,7 @@
 load('application');
 
+before(checkRole);
+
 action(function index() {
   this.title = 'Users index';
   User.all(function (err, users) {

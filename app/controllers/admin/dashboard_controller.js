@@ -1,5 +1,7 @@
 load('application');
 
+before(checkRole);
+
 action('index', function () {
     this.title = 'Testing Site Home Page';
 		var userName = null;

@@ -1,6 +1,7 @@
 load('application');
 
 before(loadComment, {only: ['show', 'destroy']});
+before(checkRole);
 
 action(function index() {
   this.title = 'Comment Management';

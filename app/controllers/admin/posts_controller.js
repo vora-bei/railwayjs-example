@@ -1,7 +1,7 @@
 load('application');
 
 before(loadPost, {only: ['show', 'edit', 'update', 'destroy']});
-before(checkRole, { only: ['edit', 'update', 'destroy']});
+before(checkRole);
 
 action('new', function () {
     this.title = 'New post';
