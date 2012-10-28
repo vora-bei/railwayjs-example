@@ -11,7 +11,7 @@
   , "railway":          ">= 0.2.6"
   , "jugglingdb":       ">= 0.1.0"
   , "coffee-script":    ">= 1.1.1"
-	, "mysql":						">= 0.9.6"  
+	, "mysql":						">= 2.0.0-alpha3"  
 	, "passport":         "*"
   , "passport-google":  "*"
   , "railway-passport": "*"
