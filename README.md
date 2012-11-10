@@ -16,3 +16,6 @@ DB Setup (mysql)
 	mysql> GRANT ALL PRIVILEGES ON testingsite.* TO "testing-site"@"localhost" IDENTIFIED BY "th1s1sMYt3st1ngs1t3";
 	mysql> FLUSH PRIVILEGES;
 	mysql> EXIT
+
+  docroot$> railway db migrate
+	docroot$> railway seed plant
