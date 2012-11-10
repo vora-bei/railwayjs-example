@@ -46,7 +46,7 @@ action(function show() {
    }
   }.bind(this));
   
-  Comment.all({where: {postId: params.id}, order: 'created_at'}, function(err, comments) {
+  Comment.all({ where: { postId: params.id }, order: 'created_at' }, function(err, comments) {
     render({ comments: comments });
   });  
 });
@@ -62,7 +62,7 @@ action(function update() {
   this.post.updateAttributes(body.Post, function (err) {
     if (!err) {
       flash('info', 'Post updated');
-      redirect(path_to.post(this.post));
+      redirect(path_to.admin_post(this.post));
     } else {
       flash('error', 'Post can not be updated');
       this.title = 'Edit post details';
