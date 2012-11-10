@@ -4,12 +4,12 @@ before(loadPost, {only: ['show']});
 before(loadCommentor, {only: ['show']});
 
 action(function index() {
-    this.title = 'Posts index';
-    Post.all(function (err, posts) {
-        render({
-          posts: posts
-        });
+  this.title = 'Posts index';
+  Post.all(function (err, posts) {
+    render({
+      posts: posts
     });
+  });
 });
 
 action(function show() {

@@ -1,7 +1,7 @@
 load('application');
 
+before(loadMember, {only: ['show', 'edit', 'update', 'destroy']});
 before(use('checkRole'));
-before(loadUser, {only: ['show', 'edit', 'update', 'destroy']});
 
 action(function index() {
   this.title = 'Manage Users';
@@ -13,17 +13,29 @@ action(function index() {
 });
 
 action(function edit() {
-  this.title = 'Edit User';
-  render({ member: this.member });
+  this.title = 'Edit User'; 
+  
+  console.log(this);
+  //render();
+  
+  Role.all({where: {id: this.member.roleId}, order: 'name'}, function(err, roles) {
+    render({ roles: roles });
+  });    
+  
+  
 });
 
-function loadUser() {
-  User.find(params.id, function (err, member) {
-    if (err || !member) {
+function loadMember() {
+  User.find(params.id, function (err, user) {
+    if (err || !user) {
       redirect(path_to.admin_users());
     } else {
-      this.member = member;
+      this.member = user;
       next();
     }
   }.bind(this));
+}
+
+function loadRoles() {
+  Role.find()
 }
