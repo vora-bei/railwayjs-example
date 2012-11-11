@@ -17,5 +17,10 @@ DB Setup (mysql)
 	mysql> FLUSH PRIVILEGES; 
 	mysql> EXIT  
 	  
+DB Seeds
+------------------
+
+*Note*: Seeding does not seem to working now, but normally, after your initial migration, you can seed as follows:
+
 	docroot$> railway db migrate  
 	docroot$> railway seed plant  

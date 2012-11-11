@@ -1,7 +1,7 @@
 load('application');
 
-before(loadMember, {only: ['show', 'edit', 'update', 'destroy']});
 before(use('checkRole'));
+before(loadMember, {only: ['show', 'edit', 'update', 'destroy']});
 
 action(function index() {
   this.title = 'Manage Users';
@@ -15,7 +15,6 @@ action(function index() {
 action(function show() {
   this.title = 'User Management';
   Role.findOne({ where: { id: this.member.roleId }}, function(err, role) {
-    console.log(role);
     render({ role: role });
   });  
 });
