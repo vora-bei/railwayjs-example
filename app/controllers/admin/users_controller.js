@@ -12,17 +12,33 @@ action(function index() {
   });
 });
 
+action(function show() {
+  this.title = 'User Management';
+  Role.findOne({ where: { id: this.member.roleId }}, function(err, role) {
+    console.log(role);
+    render({ role: role });
+  });  
+});
+
 action(function edit() {
-  this.title = 'Edit User'; 
-  
-  console.log(this);
-  //render();
-  
-  Role.all({where: {id: this.member.roleId}, order: 'name'}, function(err, roles) {
+  this.title = 'Edit User';
+  Role.all(function(err, roles) {
     render({ roles: roles });
-  });    
-  
-  
+  });      
+});
+
+action(function update() {
+  body.User.updated_at = new Date;
+  this.member.updateAttributes(body.User, function (err) {
+    if (!err) {
+      flash('info', 'User Updated');
+      redirect(path_to.admin_user(this.member));
+    } else {
+      flash('error', 'User info can not be updated');
+      this.title = 'Edit User Details';
+      render('edit');
+    }
+  }.bind(this));
 });
 
 function loadMember() {
@@ -34,8 +50,4 @@ function loadMember() {
       next();
     }
   }.bind(this));
-}
-
-function loadRoles() {
-  Role.find()
 }

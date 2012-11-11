@@ -10,3 +10,15 @@
 	</tr>
 </table>
 
+<div class="control-group">
+   <%- form.label("roleId", false, {class: "control-label"}) %>
+   <div class="controls">
+			<select name="User[roleId]">
+				<% roles.forEach(function (role) { %>
+					<% var selected = (parseInt(role.id) === parseInt(member.roleId)) ? 'selected="selected"' : null; %>
+					<option value="<%- role.id %>" <%- selected %>><%- role.name %></option>
+				<% }); %>
+			</select>
+   </div>
+</div>
+
