@@ -37,6 +37,8 @@ var User = define('User', function () {
 	property('googleId', String, { index: true });
 	property('githubId', String, { index: true });
 	property('linkedinId', String, { index: true });
+	property('created_at', Date);
+  property('updated_at', Date);
 });
 
 var Role = define('Role', function() {

@@ -2,13 +2,12 @@ load('application');
 
 before(use('checkRole'));
 before(loadMember, {only: ['show', 'edit', 'update', 'destroy']});
+before(loadAllMembers,{only: ['index']})
 
 action(function index() {
   this.title = 'Manage Users';
-  User.all(function (err, users) {
-    render({
-      usersList: users // Do not set variable to 'users', this is reserved to Passport
-    });
+  render({
+    usersList: this.memberList // Do not set variable to 'users', this is reserved to Passport
   });
 });
 
@@ -27,6 +26,7 @@ action(function edit() {
 });
 
 action(function update() {
+  req.body.User.updated_at = new Date;
   body.User.updated_at = new Date;
   this.member.updateAttributes(body.User, function (err) {
     if (!err) {
@@ -48,5 +48,15 @@ function loadMember() {
       this.member = user;
       next();
     }
+  }.bind(this));
+}
+
+function loadAllMembers() {
+  User.all(function (err, users) {
+    if (err || !users) 
+      this.memberList = null;
+    else
+      this.memberList = users;
+    next();
   }.bind(this));
 }

@@ -12,6 +12,17 @@ function loadUser() {
 		User.find(session.passport.user, function(err, user) {
 			if (!err || user) {
         this.userName = user.displayName;
+				/**
+				 * Since Railway Passport is creating our Users for us,
+				 * to include any other fields, we will check on first
+				 * login. Non-elegant...
+				 */ 
+				if (user.created_at == null) {
+					user.created_at = new Date;
+					user.updated_at = new Date;
+					user.roleId = 2; // Static, really bad
+					user.save();
+				}
         next();
       }
 		}.bind(this));

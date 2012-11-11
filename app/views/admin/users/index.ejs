@@ -10,6 +10,7 @@
           <tr>
             <th>Name</th>
             <th>Email</th>
+            <th>Role</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -18,6 +19,7 @@
             <tr>
               <td><strong><%- link_to(user.displayName, path_to.admin_user(user)) %></strong></td>
               <td><strong><%- link_to(user.email, path_to.admin_user(user)) %></strong></td>
+              <td><%= user.getRole() %></td>
               <td>
                 <%- link_to('<i class="icon-edit"></i> Edit', path_to.edit_admin_user(user), {class: 'btn btn-mini'}) %>
                 <%- link_to('<i class="icon-remove icon-white"></i> Delete', path_to.admin_user(user), {class: 'btn btn-mini btn-danger', method: 'delete', remote: true, jsonp: '(function (u) {location.href = u;})'}) %>        

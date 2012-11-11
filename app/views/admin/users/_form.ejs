@@ -1,6 +1,5 @@
 <%- errorMessagesFor(user) %>
 <table class="table table-bordered table-striped">
-	<caption><h4>Static Fields - Cannot be Edited</h4></caption>
 	<tr>
 		<th>Display Name</th>
 		<td><%- member.displayName %></td>
@@ -11,7 +10,7 @@
 </table>
 
 <div class="control-group">
-   <%- form.label("roleId", false, {class: "control-label"}) %>
+   <%- form.label("Role", false, {class: "control-label"}) %>
    <div class="controls">
 			<select name="User[roleId]">
 				<% roles.forEach(function (role) { %>
@@ -20,5 +19,16 @@
 				<% }); %>
 			</select>
    </div>
+	<div class="control-group">
+   <%- form.label("Active", false, {class: "control-label"}) %>
+		<div class="controls">
+			<label class="radio">
+				<%- form.input("active", { type: 'radio', value: 'true' }) %> True
+			</label>
+			<label class="radio">
+				<%- form.input("active", { type: 'radio', value: 'false' }) %> False
+			</label>
+		</div>
+	</div>
 </div>
 
