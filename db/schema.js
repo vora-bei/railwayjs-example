@@ -36,6 +36,7 @@ var User = define('User', function () {
 	property('email', String, { index: true });
 	property('googleId', String, { index: true });
 	property('githubId', String, { index: true });
+	property('signatureId', String, { index: true });
 	property('linkedinId', String, { index: true });
 	property('created_at', Date);
   property('updated_at', Date);
