@@ -19,15 +19,14 @@ action(function show() {
   User.find(this.comment.userId, function (err, user) {
     if (!err || user) {
      this.user = user;
-     next();
    }
   }.bind(this));
   
   // Get the Post that this Comment is referenced on
   Post.find(this.comment.postId, function (err, post) {
-    render({ post: post});
-  });
-    
+    this.post=post;
+  }.bind(this));
+	render(this);
 });
 
 action(function destroy() {

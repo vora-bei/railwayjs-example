@@ -1,4 +1,4 @@
-Comment.seed ->
+Comment.create(
     content: 'You\'re Fired.'
     postId: '1'
     userId: '1'
@@ -8,8 +8,8 @@ Comment.seed ->
     created_at: 'Fri Nov 09 2012 22:37:36'
     updated_at: null
     id: 1
-
-Comment.seed ->
+)
+Comment.create(
     content: 'Awesome show. Great job!'
     postId: '1'
     userId: '1'
@@ -19,4 +19,4 @@ Comment.seed ->
     created_at: 'Fri Nov 09 2012 22:37:58'
     updated_at: null
     id: 2
-
+)

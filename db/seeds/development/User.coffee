@@ -1,4 +1,4 @@
-User.seed ->
+User.create(
     displayName: 'Mickey Mouse'
     roleId: 1
     email: 'alibasterjones@gmail.com'
@@ -7,4 +7,4 @@ User.seed ->
     linkedinId: null
     userId: null
     id: 1
-
+)
